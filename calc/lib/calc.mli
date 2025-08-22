@@ -1,0 +1,16 @@
+class calc: object
+    val queue: string Queue.t
+    val mutable curr_val: float
+    val mutable last_operation: string
+    val mutable running: bool
+
+    method input: unit
+
+    method print_queue: unit
+
+    method get_current: float
+
+    method is_running: bool
+
+    method process_queue: unit
+end
