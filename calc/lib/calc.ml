@@ -46,6 +46,28 @@ class calc = object (self)
 
   method get_current = curr_val
 
+  method print_current = 
+    let dec = ref (self#num_decimals) in
+    if !dec > 5 then dec := 5;
+    Printf.printf "= %.*f\n" !dec curr_val
+
+  method private num_decimals = 
+    let str = string_of_float curr_val in
+    match String.split_on_char '.' str with
+    | [_; dec_part] -> (
+      (*remove trailing zeros*)
+      let dec_part = String.trim dec_part in
+      let len = String.length dec_part in
+      (* only count digits before possible exponent or trailing zeroes *)
+      let rec count i = 
+        if i < 0 then 0
+        else if dec_part.[i] = '0' then count (i-1)
+        else i + 1
+      in
+      count (len - 1)
+    )
+    | _ -> 0
+
   method is_running = running
 
     method process_queue = 

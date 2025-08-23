@@ -1,5 +1,6 @@
 let () = (
-  print_endline "Welcome to the Calculator:";
+  print_endline "\nWelcome to this stateful calculator:\n";
+  print_endline("Use the normal operators and use c to clear");
   print_endline "Type 'exit' at any time to quit.";
 
   let calc = new Calc.calc in
@@ -7,6 +8,6 @@ let () = (
     calc#input;
     (* calc#infix_to_postfix; *)
     calc#process_queue;
-    Printf.printf "= %f\n" calc#get_current
+    calc#print_current;
   done
 )

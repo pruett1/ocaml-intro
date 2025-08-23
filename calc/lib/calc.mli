@@ -13,6 +13,8 @@ class calc: object
 
     method get_current: float
 
+    method print_current: unit
+
     method is_running: bool
 
     method process_queue: unit
