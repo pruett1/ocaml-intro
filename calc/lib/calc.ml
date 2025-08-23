@@ -5,6 +5,9 @@ class calc = object (self)
   val mutable last_operation = "NaN"
   val mutable running = true
 
+  initializer
+    Stack.push curr_val stack
+
   method input = 
     let input = Input.get_input "> " in
     Input.process_input input queue
@@ -37,6 +40,10 @@ class calc = object (self)
   method print_queue = 
     Queue.iter print_endline queue
 
+  method private print_stack = 
+    print_endline "starting print_stack";
+    Stack.iter (fun x -> print_endline (string_of_float x)) stack
+
   method get_current = curr_val
 
   method is_running = running
@@ -45,6 +52,7 @@ class calc = object (self)
       self#infix_to_postfix;
       let exit_found = ref false in
       while not (Queue.is_empty queue) && not !exit_found do
+        (* self#print_stack; *)
         let item = Queue.pop queue in
         if item = "exit" then (
           exit_found := true;
@@ -53,6 +61,7 @@ class calc = object (self)
         else if Input.is_float item then
           Stack.push (float_of_string item) stack
         else (
+          (* print_endline ("operator is " ^ item); *)
           let safe_pop () = 
             if Stack.is_empty stack then curr_val else Stack.pop stack
           in
@@ -65,29 +74,29 @@ class calc = object (self)
             curr_val <- r
           )
           | "-" -> (
-            let a = safe_pop () in
             let b = safe_pop () in
+            let a = safe_pop () in
             let r = Math.subtract a b in
             Stack.push r stack;
             curr_val <- r
           )
           | "*" -> (
-            let a = safe_pop () in
             let b = safe_pop () in
+            let a = safe_pop () in
             let r = Math.multiply a b in
             Stack.push r stack;
             curr_val <- r
           )
           | "/" -> (
-            let a = safe_pop () in
             let b = safe_pop () in
+            let a = safe_pop () in
             let r = Math.divide a b in
             Stack.push r stack;
             curr_val <- r
           )
           | "^" -> (
-            let a = safe_pop () in
             let b = safe_pop () in
+            let a = safe_pop () in
             let r = Math.power a b in
             Stack.push r stack;
             curr_val <- r
