@@ -6,6 +6,8 @@ class calc: object
 
     method input: unit
 
+    method private infix_to_postfix: unit
+
     method print_queue: unit
 
     method get_current: float

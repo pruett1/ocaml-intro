@@ -5,4 +5,10 @@ let divide x y =
   if y <> 0.0 then x /. y
   else failwith "Division by zero"
 let power x y = x ** y
-let sqrt x = x ** 0.5
+
+let op_order op = 
+  match op with
+  | "^" -> 3
+  | "/" | "*" -> 2
+  | "+" | "-" -> 1
+  | _ -> -1

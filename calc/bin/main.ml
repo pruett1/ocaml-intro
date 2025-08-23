@@ -5,8 +5,8 @@ let () = (
   let calc = new Calc.calc in
   while calc#is_running do
     calc#input;
-    (* calc#print_queue; *)
+    (* calc#infix_to_postfix; *)
     calc#process_queue;
-    Printf.printf "Final value: %f\n" calc#get_current
+    Printf.printf "= %f\n" calc#get_current
   done
 )

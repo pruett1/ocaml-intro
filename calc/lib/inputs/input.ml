@@ -17,6 +17,15 @@ let process_input input queue =
           current_string := ""
         )
       )
+      else if (c = 'c' || c = '(' || c = ')') then (
+        if !current_string <> "" then (
+          Queue.add !current_string queue;
+          Queue.add (String.make 1 c) queue;
+          current_string := ""
+        )
+        else 
+          Queue.add (String.make 1 c) queue
+      )
       else if !current_string <> "" then (
         if is_float (String.make 1 c) <> is_float !current_string then (
           Queue.add !current_string queue;
