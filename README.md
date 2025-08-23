@@ -17,3 +17,8 @@ Steps
 4. Need to cd into hello direc before running ```dune build```
 5. Execute with ```dune hello```
 6. Can use -w to use watch mode (will run when file(s) are altered)
+
+### Calculator App
+Made a stateful command line calculator app to work on using classes and multiple files in the lib folder
+
+Can be run by going into the calc dir and running ```dune exec calc```
